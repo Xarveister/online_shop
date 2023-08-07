@@ -10,13 +10,13 @@ class Command(BaseCommand):
         Product.objects.all().delete()  # очистка таблицы Category
 
         new_product = [
-            {'name_prod': 'Greenfield', 'description_prod': 'зеленый чай', 'img_prod': '', 'category_prod': 'Чай',
+            {'name_prod': 'Greenfield', 'description_prod': 'зеленый чай', 'img_prod': '', 'category': 'Чай',
              'price_prod': '100'},
-            {'name_prod': 'Помидоры', 'description_prod': 'красные томаты', 'img_prod': '', 'category_prod': 'Овощи',
+            {'name_prod': 'Помидоры', 'description_prod': 'красные томаты', 'img_prod': '', 'category': 'Овощи',
              'price_prod': '50'},
-            {'name_prod': 'Nescafe', 'description_prod': 'черный кофе', 'img_prod': '', 'category_prod': 'Кофе',
+            {'name_prod': 'Nescafe', 'description_prod': 'черный кофе', 'img_prod': '', 'category': 'Кофе',
              'price_prod': '80'},
-            {'name_prod': 'Степ', 'description_prod': 'шоколадные конфеты', 'img_prod': '', 'category_prod': 'Конфеты',
+            {'name_prod': 'Степ', 'description_prod': 'шоколадные конфеты', 'img_prod': '', 'category': 'Конфеты',
              'price_prod': '30'},
         ]
 
