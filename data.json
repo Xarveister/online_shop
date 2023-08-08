@@ -1,0 +1,18 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name_category": "Конфеты",
+      "category_description": "Кондитерские изделия"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name_category": "Кофе",
+      "category_description": "Бакалея"
+    }
+  }
+]
