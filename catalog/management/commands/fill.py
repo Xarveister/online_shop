@@ -13,6 +13,8 @@ class Command(BaseCommand):
         new_category = [
             {'name_category': 'Чай', 'category_description': 'Бакалея'},
             {'name_category': 'Овощи', 'category_description': 'Свежие овощи'},
+            {'name_category': 'Кофе', 'category_description': 'Черный кофе'},
+            {'name_category': 'Конфеты', 'category_description': 'Шоколадные конфеты'},
 
         ]
 
