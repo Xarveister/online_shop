@@ -12,8 +12,8 @@ def index(request):
 class ProductDetailView(View):
     template_name = 'catalog/product_detail.html'
 
-    def get(self, request, product_id):
-        product = get_object_or_404(Product, pk=product_id)
+    def get(self, request):
+        product = get_object_or_404(Product)
         return render(request, self.template_name, {'product': product})
 
 
