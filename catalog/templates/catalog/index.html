@@ -4,18 +4,18 @@
 {% block content%}
 <div class="container">
   <div class="row text-center">
-    {% for product in products %}
+    {% for object in object_list %}
     <div class="col-3">
       <div class="card mb-4 box-shadow">
         <div class="card">
           <div class="card-body">
-            <h3 class="card-title">{{ product.name_prod }}</h3>
-            <h4 class="card-title pricing-card-title">${{ product.price_prod }}</h4>
+            <h3 class="card-title">{{ object.name_prod }}</h3>
+            <h4 class="card-title pricing-card-title">${{ object.price_prod }}</h4>
             {% if product.img_prod %}
-            <img src="{{ product.img_prod|mediapath }}" alt="{{ product.name_prod }}" class="img-fluid">
+            <img src="{{ object.img_prod|mediapath }}" alt="{{ object.name_prod }}" class="img-fluid">
             {% endif %}
             <p class="card-text">{{ product.description_prod|truncatechars:100 }}</p>
-            <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Купить</a>
+            <a href="{% url 'catalog:product'%}" class="btn btn-success">ПЕРЕЙТИ</a>
           </div>
         </div>
       </div>

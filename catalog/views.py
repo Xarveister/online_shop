@@ -6,16 +6,22 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 
 def index(request):
-    return render(request, 'catalog\index.html')
+    products_list = Product.objects.all()
+
+    context = {
+        'object_list': products_list,
+        'title': 'Главная страница'
+    }
+    return render(request, 'catalog\index.html', context)
 
 
-class ProductDetailView(View):
-    template_name = 'catalog/product_detail.html'
-
-    def get(self, request):
-        product = get_object_or_404(Product)
-        return render(request, self.template_name, {'product': product})
-
+def product(request, pk):
+    '''
+    Контролер для страницы товара интернет-магазина
+    :return: HTTP-ответ с отображением шаблона "product.html"
+    '''
+    product = get_object_or_404(Product, id=pk)
+    return render(request, 'catalog/product.html', {'object': product})
 
 def contacts(request):
     if request.method == 'POST':
