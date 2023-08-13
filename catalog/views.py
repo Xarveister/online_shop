@@ -1,27 +1,36 @@
+from itertools import product
+
 from django.shortcuts import render
 from django.views import View
 
 from catalog.models import Product
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, render
+
+class IndexView(View):
+    template_name = 'catalog/index.html'
+
+    def get(self, request):
+        products = Product.objects.all()
+        return render(request, self.template_name, {'products': products})
+
+class ProductDetailView(View):
+    template_name = 'catalog/product.html'
+    model = Product
 
 
-def index(request):
-    products_list = Product.objects.all()
-
-    context = {
-        'object_list': products_list,
-        'title': 'Главная страница'
-    }
-    return render(request, 'catalog\index.html', context)
 
 
-def product(request, pk):
-    '''
-    Контролер для страницы товара интернет-магазина
-    :return: HTTP-ответ с отображением шаблона "product.html"
-    '''
-    product = get_object_or_404(Product, id=pk)
-    return render(request, 'catalog/product.html', {'object': product})
+    # def get(self, request, product_id):
+    #     product = get_object_or_404(Product, pk=product_id)
+    #     return render(request, self.template_name, {'product': product})
+#
+# def product(request, pk):
+#     '''
+#     Контролер для страницы товара интернет-магазина
+#     :return: HTTP-ответ с отображением шаблона "product.html"
+#     '''
+#     product = get_object_or_404(Product, id=pk)
+#     return render(request, 'catalog/product.html', {'object': product})
 
 def contacts(request):
     if request.method == 'POST':

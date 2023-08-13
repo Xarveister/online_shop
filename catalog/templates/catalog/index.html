@@ -4,7 +4,7 @@
 {% block content%}
 <div class="container">
   <div class="row text-center">
-    {% for object in object_list %}
+    {% for object in products %}
     <div class="col-3">
       <div class="card mb-4 box-shadow">
         <div class="card">
@@ -14,9 +14,10 @@
             {% if product.img_prod %}
             <img src="{{ object.img_prod|mediapath }}" alt="{{ object.name_prod }}" class="img-fluid">
             {% endif %}
-            <p class="card-text">{{ product.description_prod|truncatechars:100 }}</p>
-            <a href="{% url 'catalog:product'%}" class="btn btn-success">ПЕРЕЙТИ</a>
+            <p class="card-text">{{ object.description_prod|truncatechars:100 }}</p>
+            <a href="{}" class="btn btn-primary">Купить</a>
           </div>
+
         </div>
       </div>
     </div>
