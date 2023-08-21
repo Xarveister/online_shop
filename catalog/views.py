@@ -6,6 +6,7 @@ from django.views import View
 from catalog.models import Product
 from django.shortcuts import get_object_or_404, render
 
+
 class IndexView(View):
     template_name = 'catalog/index.html'
 
@@ -13,16 +14,15 @@ class IndexView(View):
         products = Product.objects.all()
         return render(request, self.template_name, {'products': products})
 
+
 class ProductDetailView(View):
     template_name = 'catalog/product.html'
     model = Product
+    def get(self, request, product_id):
+        product = get_object_or_404(Product, pk=product_id)
+        return render(request, self.template_name, {'product': product})
 
 
-
-
-    # def get(self, request, product_id):
-    #     product = get_object_or_404(Product, pk=product_id)
-    #     return render(request, self.template_name, {'product': product})
 #
 # def product(request, pk):
 #     '''
