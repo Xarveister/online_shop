@@ -2,6 +2,9 @@
 
 {% load media_path %}
 {% block content%}
+<div class="col-12 mb-5">
+  <a class="btn btn-outline-primary" href="{% url 'catalog:product_create' %}">Добавить продукт</a>
+</div>
 <div class="container">
   <div class="row text-center">
     {% for object in products %}
@@ -15,7 +18,10 @@
             <img src="{{ object.img_prod|mediapath }}" alt="{{ object.name_prod }}" class="img-fluid">
             {% endif %}
             <p class="card-text">{{ object.description_prod|truncatechars:100 }}</p>
-            <a href="{% url 'catalog:product_detail' object.pk %}" class="btn btn-primary">Подробнее</a>
+            <p class="card-text">{{ product.text|truncatechars:100 }}</p>
+            <a href="{% url 'catalog:product_detail' object.pk %}" class="btn btn-outline-info">о товаре</a>
+            <a href="{% url 'catalog:product_edit' object.pk %}" type="button" class="btn btn-outline-info">изменить</a>
+            <a href="{% url 'catalog:delete' object.pk %}" type="button" class="btn btn-outline-info">удалить</a>
           </div>
 
         </div>
