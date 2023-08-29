@@ -52,7 +52,7 @@ class ProductUpdateView(UpdateView):
     success_url = reverse_lazy('index')
 
     def get_success_url(self):
-        return reverse('index', args=[self.kwargs.get('pk')])
+        return reverse('product_detail', args=[self.kwargs.get('pk')])
 
     def get_context_data(self, *args, **kwargs):
         context_data = super().get_context_data(**kwargs)
