@@ -1,18 +1,1 @@
-[
-  {
-    "model": "catalog.category",
-    "pk": 1,
-    "fields": {
-      "name_category": "Конфеты",
-      "category_description": "Кондитерские изделия"
-    }
-  },
-  {
-    "model": "catalog.category",
-    "pk": 2,
-    "fields": {
-      "name_category": "Кофе",
-      "category_description": "Бакалея"
-    }
-  }
-]
+[{"model": "catalog.product", "pk": 4, "fields": {"name_prod": "Помидоры", "description_prod": "красные томаты", "img_prod": "", "category": 6, "price_prod": 50, "data_create_prod": "2023-08-09T16:16:20.675Z", "data_change_prod": "2023-08-29T16:37:55.115Z"}}, {"model": "catalog.product", "pk": 5, "fields": {"name_prod": "Nescafe", "description_prod": "черный кофе", "img_prod": "", "category": 7, "price_prod": 80, "data_create_prod": "2023-08-09T16:16:20.675Z", "data_change_prod": "2023-08-29T16:39:11.647Z"}}, {"model": "catalog.product", "pk": 6, "fields": {"name_prod": "Степ", "description_prod": "шоколадные конфеты", "img_prod": "", "category": 7, "price_prod": 30, "data_create_prod": "2023-08-09T16:16:20.675Z", "data_change_prod": "2023-08-30T16:08:22.919Z"}}, {"model": "catalog.product", "pk": 7, "fields": {"name_prod": "сахар", "description_prod": "белая смерть", "img_prod": "", "category": 6, "price_prod": 43, "data_create_prod": "2023-08-27T08:08:19.675Z", "data_change_prod": "2023-08-29T16:32:18.458Z"}}, {"model": "catalog.category", "pk": 5, "fields": {"name_category": "Чай", "category_description": "Бакалея"}}, {"model": "catalog.category", "pk": 6, "fields": {"name_category": "Овощи", "category_description": "Свежие овощи"}}, {"model": "catalog.category", "pk": 7, "fields": {"name_category": "Кофе", "category_description": "Черный кофе"}}, {"model": "catalog.category", "pk": 8, "fields": {"name_category": "Конфеты", "category_description": "Шоколадные конфеты"}}, {"model": "catalog.version", "pk": 1, "fields": {"product": 4, "number": "1", "name": "dthcbz", "is_active": true}}, {"model": "catalog.version", "pk": 3, "fields": {"product": 5, "number": "65656", "name": "fgfgfggf", "is_active": true}}, {"model": "catalog.version", "pk": 4, "fields": {"product": 6, "number": "1", "name": "fg", "is_active": true}}]
