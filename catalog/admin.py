@@ -5,10 +5,10 @@ from catalog.models import Product, Category, Version
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name_prod', 'price_prod', 'category')
+    list_display = ('id', 'name_prod', 'price_prod', 'category', 'is_published')
     search_fields = ('name_prod', 'description_prod', 'category')
     list_filter = ('category', )
-
+    list_editable = ('is_published',)
 
 
 @admin.register(Category)

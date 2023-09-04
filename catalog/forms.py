@@ -9,10 +9,15 @@ class StyleFormMixin:
         for field_name, field in self.fields.items():
             if field_name != "is_current_version":
                 field.widget.attrs['class'] = 'form-control'
+            elif field_name != 'is_published':
+                field.widget.attrs['class'] = 'form-control'
 
 
 class ProductForm(forms.ModelForm, StyleFormMixin):
     version = forms.ModelChoiceField(queryset=Version.objects.none(), label='Версия продукта', required=False)
+    is_published = forms.BooleanField(label='Опубликовано',
+                                      required=False,
+                                      widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))
     forbidden_word = ['казино', 'криптовалюта', 'крипта',
                       'биржа', 'дешево', 'бесплатно', 'обман',
                       'полиция', 'радар'
@@ -20,7 +25,7 @@ class ProductForm(forms.ModelForm, StyleFormMixin):
 
     class Meta:
         model = Product
-        fields = '__all__'
+        exclude = ('owner',)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

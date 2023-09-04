@@ -3,7 +3,9 @@
 {% load media_path %}
 {% block content%}
 <div class="col-12 mb-5">
-  <a class="btn btn-outline-primary" href="{% url 'catalog:product_create' %}">Добавить продукт</a>
+  {% if user.is_authenticated %}
+    <a class="btn btn-outline-primary" href="{% url 'catalog:product_create' %}">Добавить продукт</a>
+  {% endif %}
 </div>
 <div class="container">
   <div class="row text-center">
@@ -20,10 +22,13 @@
             <p class="card-text">{{ object.description_prod|truncatechars:100 }}</p>
             <p class="card-text">{{ product.text|truncatechars:100 }}</p>
             <a href="{% url 'catalog:product_detail' object.pk %}" class="btn btn-outline-info">о товаре</a>
-            <a href="{% url 'catalog:product_edit' object.pk %}" type="button" class="btn btn-outline-info">изменить</a>
-            <a href="{% url 'catalog:delete' object.pk %}" type="button" class="btn btn-outline-info">удалить</a>
+            {% if user.is_authenticated %}
+              <a href="{% url 'catalog:product_edit' object.pk %}" type="button" class="btn btn-outline-info">изменить</a>
+            {% endif %}
+            {% if perms.catalog.delete_product %}
+              <a href="{% url 'catalog:delete' object.pk %}" type="button" class="btn btn-outline-info">удалить</a>
+            {% endif %}
           </div>
-
         </div>
       </div>
     </div>

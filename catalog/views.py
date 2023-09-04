@@ -1,14 +1,16 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.forms import inlineformset_factory
+from django.http import Http404
 from django.urls import reverse_lazy, reverse
 from django.views import View
-from django.views.generic import CreateView, DeleteView, UpdateView
+from django.views.generic import CreateView, DeleteView, UpdateView, ListView
 
 from catalog.forms import ProductForm, VersionForm
 from catalog.models import Product, Version
 from django.shortcuts import get_object_or_404, render
 
 
-class IndexView(View):
+class IndexView(ListView):
     template_name = 'catalog/index.html'
 
     def get(self, request):
@@ -37,7 +39,7 @@ def contacts(request):
     return render(request, 'catalog/contacts.html')
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
     '''
     Класс для создания нового продукта в интернет-магазине
     '''
@@ -52,11 +54,17 @@ class ProductCreateView(CreateView):
         return super().form_valid(form)
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:index')
+    permission_required = 'catalog.change_product'
 
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        if self.object.owner != self.request.user and not self.request.user.is_staff:
+            raise Http404
+        return self.object
     def get_success_url(self):
         return reverse('catalog:product_detail', args=[self.kwargs.get('pk')])
 
@@ -84,9 +92,10 @@ class ProductUpdateView(UpdateView):
         return super().form_valid(form)
 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     '''
     Класс для удаления продукта
     '''
     model = Product
     success_url = reverse_lazy('catalog:index')
+    permission_required = 'catalog.delete_product'

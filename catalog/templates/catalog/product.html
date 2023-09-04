@@ -9,7 +9,7 @@
             <p>{{ version.name }}</p>
             <p>{{ version.is_active }}</p>
             <p>{{ version.number }}</p>
-            <p class="card-text">{{ object.owner | default:'-' }}</p>
+            <p class="card-text">{{ product.owner | default:'-' }}</p>
             <div class="card-footer">
                 {% for version in product.version_set.all %}
                     {%if version.is_active %}
