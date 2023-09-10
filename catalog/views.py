@@ -6,8 +6,10 @@ from django.views import View
 from django.views.generic import CreateView, DeleteView, UpdateView, ListView
 
 from catalog.forms import ProductForm, VersionForm
-from catalog.models import Product, Version
+from catalog.models import Product, Version, Category
 from django.shortcuts import get_object_or_404, render
+
+from catalog.services import get_cached_categories
 
 
 class IndexView(ListView):
@@ -25,6 +27,18 @@ class ProductDetailView(View):
     def get(self, request, product_id):
         product = get_object_or_404(Product, pk=product_id)
         return render(request, self.template_name, {'product': product})
+
+
+class CategoryListView(ListView):
+    model = Category
+    extra_context = {
+        'title': 'Категории товаров'
+    }
+
+    def get_context_data(self, *args, **kwargs):
+        context_data = super().get_context_data()
+        context_data['cached_categories'] = get_cached_categories()
+        return context_data
 
 
 def contacts(request):
@@ -65,6 +79,7 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         if self.object.owner != self.request.user and not self.request.user.is_staff:
             raise Http404
         return self.object
+
     def get_success_url(self):
         return reverse('catalog:product_detail', args=[self.kwargs.get('pk')])
 
